@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "sender.h"
 #include "../const.h"
 
@@ -408,6 +409,7 @@ static int send_encrypted(Sender *sender, uint8_t type, const uint8_t *payload, 
 
 static int recv_encrypted(Sender *sender, MessageHeader *header, uint8_t *payload, size_t payload_max)
 {
+    (void)payload_max;
     uint8_t header_buf[HEADER_SIZE];
 
     if (socket_recv_all(&sender->sock, header_buf, HEADER_SIZE) < 0)

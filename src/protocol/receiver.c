@@ -437,6 +437,7 @@ static int send_encrypted(Receiver *receiver, uint8_t type, const uint8_t *paylo
 
 static int recv_encrypted(Receiver *receiver, MessageHeader *header, uint8_t *payload, size_t payload_max)
 {
+    (void)payload_max;
     uint8_t header_buf[HEADER_SIZE];
 
     if (socket_recv_all(&receiver->sock, header_buf, HEADER_SIZE) < 0)
