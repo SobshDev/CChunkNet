@@ -25,7 +25,7 @@ static CLI_T parse_receive(int ac, char *av[])
         dbgprintf("Port not found, using default port");
     }
     if (ac > 4) {
-        dbgprintf("Too many arguments");
+        dbgprintf("Too many arguments : %d", ac);
         return cli;
     }
     if (ac == 4) {

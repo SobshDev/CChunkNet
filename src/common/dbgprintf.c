@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include <stdarg.h>
 
 bool is_debug(char **env)
 {
@@ -11,12 +12,19 @@ bool is_debug(char **env)
     return false;
 }
 
-int dbgprintf(char *message)
+int dbgprintf(const char *format, ...)
 {
     extern char **environ;
 
     if (is_debug(environ) == true) {
-        return printf("DEBUG: %s\n", message);
+        va_list args;
+        int ret;
+
+        printf("DEBUG: ");
+        va_start(args, format);
+        ret = vprintf(format, args);
+        va_end(args);
+        return ret + 7;
     }
     return 0;
 }

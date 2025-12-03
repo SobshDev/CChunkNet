@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-int dbgprintf(char *message);
+int dbgprintf(const char *format, ...);
 bool is_debug(char **env);
 
 #endif // DBGPRINTF_H
