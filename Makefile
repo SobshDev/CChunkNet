@@ -12,7 +12,7 @@ RESET		= \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -I${SRC_DIR}
 	@echo "$(GREEN)$(NAME) built successfully$(RESET)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c

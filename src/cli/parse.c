@@ -1,22 +1,26 @@
 #include <string.h>
 #include <stddef.h>
 #include "cli.h"
+#include "../const.h"
+
 
 static CLI_T parse_send(int ac, char *av[])
 {
     CLI_T cli = {};
-    (void)ac;
-    (void)av;
+
     cli.operation_type = 1;
+
     return cli;
 }
 
 static CLI_T parse_receive(int ac, char *av[])
 {
     CLI_T cli = {};
-    (void)ac;
-    (void)av;
+
     cli.operation_type = 2;
+
+    if (ac == 2)
+        cli.port = DEFAULT_PORT;
     return cli;
 }
 
