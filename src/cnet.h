@@ -9,4 +9,5 @@ typedef struct CNET_S {
     unsigned int magic_number;
 } CNET_T;
 
+
 #endif // CNET_H
