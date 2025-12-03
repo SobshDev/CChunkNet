@@ -55,8 +55,10 @@ PROTOCOL_SRC = $(SRC_DIR)/protocol/message.c
 NETWORK_SRC = $(SRC_DIR)/network/socket.c
 CRYPTO_SRC = $(SRC_DIR)/crypto/crypto.c
 FILE_SRC = $(SRC_DIR)/file/file.c
+SENDER_SRC = $(SRC_DIR)/protocol/sender.c
+RECEIVER_SRC = $(SRC_DIR)/protocol/receiver.c
 
-test: test_parse_receive test_parse_send test_message test_socket test_crypto test_file
+test: test_parse_receive test_parse_send test_message test_socket test_crypto test_file test_transfer
 
 test_parse_receive: $(TEST_DIR)/test_parse_receive.c $(CLI_SRC) $(COMMON_SRC)
 	@$(CC) $(CFLAGS) -I$(SRC_DIR) $^ -o $@
@@ -94,4 +96,10 @@ test_file: $(TEST_DIR)/test_file.c $(FILE_SRC) $(CRYPTO_SRC)
 	@./test_file
 	@rm -f test_file
 
-.PHONY: all clean fclean re test test_parse_receive test_parse_send test_message test_socket test_crypto test_file
+test_transfer: $(TEST_DIR)/test_transfer.c $(SENDER_SRC) $(RECEIVER_SRC) $(FILE_SRC) $(CRYPTO_SRC) $(NETWORK_SRC) $(PROTOCOL_SRC)
+	@$(CC) $(CFLAGS) -I$(SRC_DIR) $(SODIUM_CFLAGS) $^ -o $@ $(SODIUM_LIBS)
+	@echo "$(GREEN)Running transfer tests...$(RESET)"
+	@./test_transfer
+	@rm -f test_transfer
+
+.PHONY: all clean fclean re test test_parse_receive test_parse_send test_message test_socket test_crypto test_file test_transfer
