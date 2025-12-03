@@ -30,4 +30,18 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+# Tests
+TEST_DIR	= test
+TEST_SRCS	= $(shell find $(TEST_DIR) -name '*.c')
+CLI_SRC		= $(SRC_DIR)/cli/parse.c
+COMMON_SRC	= $(SRC_DIR)/common/dbgprintf.c
+
+test: test_parse_receive
+	@./test_parse_receive
+	@rm -f test_parse_receive
+
+test_parse_receive: $(TEST_DIR)/test_parse_receive.c $(CLI_SRC) $(COMMON_SRC)
+	@$(CC) $(CFLAGS) -I$(SRC_DIR) $^ -o $@
+	@echo "$(GREEN)Running parse_receive tests...$(RESET)"
+
+.PHONY: all clean fclean re test

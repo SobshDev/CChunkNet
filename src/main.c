@@ -1,4 +1,11 @@
+#include "cli/cli.h"
+
 int main(int ac, char *av[])
 {
-    return (0);
+    CLI_T cli = parse(ac, av);
+
+    if (cli.operation_type == 0) {
+        return 1;
+    }
+    return 0;
 }
