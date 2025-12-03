@@ -21,6 +21,8 @@ static CLI_T parse_receive(int ac, char *av[])
 
     if (ac == 2)
         cli.port = DEFAULT_PORT;
+    else {
+    }
     return cli;
 }
 
