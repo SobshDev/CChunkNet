@@ -1,0 +1,52 @@
+# Build artifacts
+*.o
+*.a
+*.so
+*.dylib
+
+# Executable (update name if needed)
+chunknet
+
+# IDE and editor configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.cproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+.claude
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# CLion
+cmake-build-*/
+
+# VS Code
+*.code-workspace
+
+# Vim
+Session.vim
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+.#*
+
+# Build directories
+build/
+bin/
+obj/
+
+# Dependency files
+*.d
+
+# Debug files
+*.dSYM/
