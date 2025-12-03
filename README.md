@@ -4,9 +4,7 @@ A secure, chunk-based file transfer tool written in C.
 
 ## Demo
 
-https://github.com/user-attachments/assets/demo.mov
-
-See [docs/Demo.mov](docs/Demo.mov) for a demonstration of ChunkNet in action.
+![ChunkNet Demo](docs/demo.gif)
 
 ## Overview
 
