@@ -11,11 +11,12 @@ bool is_debug(char **env)
     return false;
 }
 
-int dprintf(char *message)
+int dbgprintf(char *message)
 {
     extern char **environ;
 
     if (is_debug(environ) == true) {
-        printf("DEBUG: %d\n", message);
+        return printf("DEBUG: %s\n", message);
     }
+    return 0;
 }
