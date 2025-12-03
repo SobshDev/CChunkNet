@@ -36,12 +36,18 @@ TEST_SRCS	= $(shell find $(TEST_DIR) -name '*.c')
 CLI_SRC		= $(SRC_DIR)/cli/parse.c
 COMMON_SRC	= $(SRC_DIR)/common/dbgprintf.c
 
-test: test_parse_receive
-	@./test_parse_receive
-	@rm -f test_parse_receive
+test: test_parse_receive test_parse_send
 
 test_parse_receive: $(TEST_DIR)/test_parse_receive.c $(CLI_SRC) $(COMMON_SRC)
 	@$(CC) $(CFLAGS) -I$(SRC_DIR) $^ -o $@
 	@echo "$(GREEN)Running parse_receive tests...$(RESET)"
+	@./test_parse_receive
+	@rm -f test_parse_receive
 
-.PHONY: all clean fclean re test
+test_parse_send: $(TEST_DIR)/test_parse_send.c $(CLI_SRC) $(COMMON_SRC)
+	@$(CC) $(CFLAGS) -I$(SRC_DIR) $^ -o $@
+	@echo "$(GREEN)Running parse_send tests...$(RESET)"
+	@./test_parse_send
+	@rm -f test_parse_send
+
+.PHONY: all clean fclean re test test_parse_receive test_parse_send
