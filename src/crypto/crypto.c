@@ -135,9 +135,9 @@ int crypto_decrypt(CryptoSession *session,
     return 0;
 }
 
-int crypto_hash(uint8_t hash[CRYPTO_HASH_SIZE],
-                const uint8_t *data,
-                size_t data_len)
+int crypto_sha256(uint8_t hash[CRYPTO_HASH_SIZE],
+                  const uint8_t *data,
+                  size_t data_len)
 {
     return crypto_hash_sha256(hash, data, data_len);
 }

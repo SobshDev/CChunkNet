@@ -66,9 +66,9 @@ int crypto_decrypt(CryptoSession *session,
                    const uint8_t nonce[CRYPTO_NONCE_SIZE]);
 
 /* SHA-256 hashing */
-int crypto_hash(uint8_t hash[CRYPTO_HASH_SIZE],
-                const uint8_t *data,
-                size_t data_len);
+int crypto_sha256(uint8_t hash[CRYPTO_HASH_SIZE],
+                  const uint8_t *data,
+                  size_t data_len);
 
 /* Random bytes */
 void crypto_random_bytes(uint8_t *buf, size_t len);
