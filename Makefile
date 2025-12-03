@@ -37,8 +37,9 @@ CLI_SRC		= $(SRC_DIR)/cli/parse.c
 COMMON_SRC	= $(SRC_DIR)/common/dbgprintf.c
 
 PROTOCOL_SRC = $(SRC_DIR)/protocol/message.c
+NETWORK_SRC = $(SRC_DIR)/network/socket.c
 
-test: test_parse_receive test_parse_send test_message
+test: test_parse_receive test_parse_send test_message test_socket
 
 test_parse_receive: $(TEST_DIR)/test_parse_receive.c $(CLI_SRC) $(COMMON_SRC)
 	@$(CC) $(CFLAGS) -I$(SRC_DIR) $^ -o $@
@@ -58,4 +59,10 @@ test_message: $(TEST_DIR)/test_message.c $(PROTOCOL_SRC)
 	@./test_message
 	@rm -f test_message
 
-.PHONY: all clean fclean re test test_parse_receive test_parse_send test_message
+test_socket: $(TEST_DIR)/test_socket.c $(NETWORK_SRC)
+	@$(CC) $(CFLAGS) -I$(SRC_DIR) $^ -o $@
+	@echo "$(GREEN)Running socket tests...$(RESET)"
+	@./test_socket
+	@rm -f test_socket
+
+.PHONY: all clean fclean re test test_parse_receive test_parse_send test_message test_socket
