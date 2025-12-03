@@ -54,8 +54,9 @@ COMMON_SRC	= $(SRC_DIR)/common/dbgprintf.c
 PROTOCOL_SRC = $(SRC_DIR)/protocol/message.c
 NETWORK_SRC = $(SRC_DIR)/network/socket.c
 CRYPTO_SRC = $(SRC_DIR)/crypto/crypto.c
+FILE_SRC = $(SRC_DIR)/file/file.c
 
-test: test_parse_receive test_parse_send test_message test_socket test_crypto
+test: test_parse_receive test_parse_send test_message test_socket test_crypto test_file
 
 test_parse_receive: $(TEST_DIR)/test_parse_receive.c $(CLI_SRC) $(COMMON_SRC)
 	@$(CC) $(CFLAGS) -I$(SRC_DIR) $^ -o $@
@@ -87,4 +88,10 @@ test_crypto: $(TEST_DIR)/test_crypto.c $(CRYPTO_SRC)
 	@./test_crypto
 	@rm -f test_crypto
 
-.PHONY: all clean fclean re test test_parse_receive test_parse_send test_message test_socket test_crypto
+test_file: $(TEST_DIR)/test_file.c $(FILE_SRC) $(CRYPTO_SRC)
+	@$(CC) $(CFLAGS) -I$(SRC_DIR) $(SODIUM_CFLAGS) $^ -o $@ $(SODIUM_LIBS)
+	@echo "$(GREEN)Running file tests...$(RESET)"
+	@./test_file
+	@rm -f test_file
+
+.PHONY: all clean fclean re test test_parse_receive test_parse_send test_message test_socket test_crypto test_file
